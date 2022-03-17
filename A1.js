@@ -10,9 +10,6 @@ const player2 = new playerinfo;
 player1.piece='X'
 player2.piece='O'
 let cellValues = ["", "", "", "", "", "", "", "", ""];
-const winText = () => `Player ${currentPlayer} has won!`;
-const drawText = () => `Game ended in a draw!`;
-const currentPlayerText = () => `It's ${currentPlayer}'s turn`;
 document.getElementById("nameinput").onclick = function performAddnames(){
     player1.name =document.getElementById("P1name").value;
     player2.name =document.getElementById("P2name").value;
@@ -27,9 +24,9 @@ document.getElementById("nameinput").onclick = function performAddnames(){
         currentPiece=player1.piece;
         var x = document.getElementById("container");
         var y =document.getElementById("commentary");
-        x.style.display = "grid";
-        y.style.display = "inline";
-        statusDisplay.innerHTML = currentPlayerText();
+        x.style.display = "inline-grid";
+        y.style.display = "inline-grid";
+        statusDisplay.innerHTML = currentPlayer;
     }
     console.log("Hello World "+player1.name+player1.ready);
     console.log("Hello World "+player2.name+player2.ready);
@@ -48,8 +45,6 @@ function performCellClick(clickedCellEvent) {
     handleCellPlayed(clickedCell, clickedCellIndex);
     performAddCommentary(clickedIndex);
     handlePlayerChange(clickedCellIndex);
-
-    // handleResultValidation();
 }
 function handleCellPlayed(clickedCell, clickedCellIndex) {
     gameState[clickedCellIndex] = currentPiece;
@@ -71,6 +66,6 @@ function handlePlayerChange() {
         currentPlayer=player1.name;
         currentPiece=player1.piece;
     }
-    statusDisplay.innerHTML = currentPlayerText();
+    statusDisplay.innerHTML = currentPlayer;
 }
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', performCellClick))
