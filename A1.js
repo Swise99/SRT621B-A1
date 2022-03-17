@@ -4,7 +4,6 @@ function playerinfo(number, name) {
 }
 const statusDisplay = document.getElementById('turn-counter');
 var currentPlayer='';
-let gameState = true;
 const player1 = new playerinfo;
 const player2 = new playerinfo;
 player1.piece='X'
@@ -39,15 +38,12 @@ function performCellClick(clickedCellEvent) {
     const clickedCellIndex = parseInt(
         clickedCell.getAttribute('index')
     );
-    if (cellValues[clickedCellIndex] !== "") {
-        return;
-    }
     handleCellPlayed(clickedCell, clickedCellIndex);
     performAddCommentary(clickedIndex);
     handlePlayerChange(clickedCellIndex);
 }
 function handleCellPlayed(clickedCell, clickedCellIndex) {
-    gameState[clickedCellIndex] = currentPiece;
+    cellValues[clickedCellIndex] = currentPiece;
     clickedCell.innerHTML = currentPiece;
 }
 function performAddCommentary(clickedIndex){
